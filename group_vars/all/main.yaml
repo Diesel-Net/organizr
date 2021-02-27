@@ -1,0 +1,10 @@
+user: automation
+home: "/home/{{ user }}"
+
+git_repository: organizr
+app_data: "{{ home }}/.diesel/{{ git_repository }}"
+
+proxy_domains:
+  - organizr.diesel.net
+
+proxy_router_main: '{{ git_repository }}-main'

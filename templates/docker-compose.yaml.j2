@@ -1,0 +1,33 @@
+# docker-compose.yaml
+
+version: '3.7'
+services: 
+
+
+  main:
+    image: organizr:organizr
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - /etc/ssl/certs/:/etc/ssl/certs/
+      - {{ app_data }}/config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=America/Los_Angeles
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.services.{{ proxy_router_main }}.loadbalancer.server.port=80
+        - traefik.http.routers.{{ proxy_router_main }}.tls.certresolver=step-ca
+        - traefik.http.routers.{{ proxy_router_main }}.rule=Host(`{{ proxy_domains | join('`,`') }}`)
+    networks:
+      - {{ docker_network }}
+
+
+
+
+
+networks:
+  {{ docker_network }}:
+    external:
+      name: {{ docker_network }}
