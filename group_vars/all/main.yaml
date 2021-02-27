@@ -1,10 +1,23 @@
-user: automation
-home: "/home/{{ user }}"
+codename: organizr
 
-git_repository: organizr
-app_data: "{{ home }}/.diesel/{{ git_repository }}"
+debug: no
+local: no
+production: no
 
-proxy_domains:
-  - organizr.diesel.net
+# directories
+directories_ansible: '{{ playbook_dir }}'
+directories_build: ~/drone_builds
+directories_docker_socket: /var/run/docker.sock
+directories_files: '{{ directories_home }}/.diesel/{{ git_repository }}/{{ git_branch }}/files'
+directories_home: '{{ ansible_env.HOME }}'
+directories_roles: '{{ directories_ansible }}/roles'
+directories_src: /drone/src/
+directories_ssl_certificates: '/etc/ssl/certs/'
+directories_ssl_certificates_file: '{{ directories_ssl_certificates }}ca-certificates.crt'
+directories_ssl_certificates_host: '{{ directories_ssl_certificates }}'
 
-proxy_router_main: '{{ git_repository }}-main'
+
+# routers/middleware
+proxy_domain: organizr.diesel.net
+repo_branch: '{{ git_repository }}-{{ git_branch }}'
+proxy_router_main: '{{ repo_branch }}-main'
