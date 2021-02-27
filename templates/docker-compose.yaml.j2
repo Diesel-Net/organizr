@@ -13,8 +13,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - fpm="false"
-      - branch="v2-master"
     deploy:
       labels:
         - traefik.enable=true
