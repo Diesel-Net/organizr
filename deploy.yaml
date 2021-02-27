@@ -5,22 +5,22 @@
 
   tasks:
 
-    - name: 'Ensure existence of configuration directory: {{ app_data }}/config'
-      command: mkdir -p {{ app_data }}/config
+    - name: 'Ensure existence of configuration directory: {{ directories_files }}/config'
+      command: mkdir -p {{ directories_files }}/config
       args:
         warn: no
-      become: yes
-      become_user: "{{ user }}"
+      # become: yes
+      # become_user: "automation"
 
     - name: Render docker-compose.yaml file
       template:
         src: "docker-compose.yaml.j2"
-        dest: "{{ app_data }}/docker-compose.yaml"
+        dest: "{{ directories_files }}/docker-compose.yaml"
 
     - name: Execute `Docker stack deploy`
       shell: >
         docker stack deploy 
         --with-registry-auth 
         --prune 
-        -c {{ app_data }}/docker-compose.yaml 
+        -c {{ directories_files }}/docker-compose.yaml 
         {{ docker_stack }}
