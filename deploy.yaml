@@ -1,0 +1,24 @@
+# ansible-playbook deploy.yaml -i inventories/prod/hosts --vault-id ~/.tokens/master_id
+
+- hosts: tools
+  strategy: linear
+
+  tasks:
+
+    - name: 'Ensure existence of configuration directory: {{ directories_files }}/config'
+      command: mkdir -p {{ directories_files }}/config
+      args:
+        warn: no
+
+    - name: Render docker-compose.yaml file
+      template:
+        src: "docker-compose.yaml.j2"
+        dest: "{{ directories_files }}/docker-compose.yaml"
+
+    - name: Execute `Docker stack deploy`
+      shell: >
+        docker stack deploy 
+        --with-registry-auth 
+        --prune 
+        -c {{ directories_files }}/docker-compose.yaml 
+        {{ docker_stack }}
