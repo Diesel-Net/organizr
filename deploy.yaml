@@ -9,8 +9,6 @@
       command: mkdir -p {{ directories_files }}/config
       args:
         warn: no
-      # become: yes
-      # become_user: "automation"
 
     - name: Render docker-compose.yaml file
       template:
