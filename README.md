@@ -8,6 +8,6 @@ Sets up [Organizr](https://github.com/causefx/Organizr) on my internal network. 
 
 ## Deploy to Docker Swarm
 ```bash
-ansible-playbook deploy.yaml -i inventories/dev/hosts --vault-id ~/.tokens/master_id
+ansible-playbook deploy.yaml -i inventories/production/hosts --vault-id ~/.tokens/master_id
 ```
 
