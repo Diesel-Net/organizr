@@ -11,8 +11,8 @@ services:
       - /etc/ssl/certs/:/etc/ssl/certs/
       - {{ directories_files }}/config:/config
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=1001
+      - PGID=1001
     deploy:
       labels:
         - traefik.enable=true
