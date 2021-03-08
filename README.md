@@ -6,6 +6,11 @@ Sets up [Organizr](https://github.com/causefx/Organizr) on my internal network. 
 ## Requirements
 - Ansible 2.10+
 
+## Installing Dependencies
+```bash
+ansible-galaxy install -r roles/requirements.yaml -p ./roles --force
+```
+
 ## Deploy to Docker Swarm
 ```bash
 ansible-playbook deploy.yaml -i inventories/production/hosts --vault-id ~/.tokens/master_id
