@@ -1,7 +1,7 @@
 ---
 kind: pipeline
 type: docker
-name: production pipeline
+name: development pipeline
 
 clone:
   depth: 1
@@ -26,6 +26,9 @@ trigger:
   event:
     - push
 ---
+kind: pipeline
+type: docker
+name: production pipeline
 
   - name: deploy
     image: plugins/ansible:3
