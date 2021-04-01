@@ -1,2 +1,4 @@
 proxy_domains:
   - dev.diesel.net
+
+proxy_path: /organizr

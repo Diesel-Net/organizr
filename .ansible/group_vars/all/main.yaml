@@ -1,9 +1,5 @@
 codename: organizr
 
-debug: no
-local: no
-production: no
-
 # directories
 directories_ansible: '{{ playbook_dir }}'
 directories_build: ~/drone_builds
