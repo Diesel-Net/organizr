@@ -18,9 +18,8 @@ services:
         - traefik.enable=true
         - traefik.http.services.{{ proxy_router_main }}.loadbalancer.server.port=80
         - traefik.http.routers.{{ proxy_router_main }}.tls.certresolver=step-ca
-        - traefik.http.routers.{{ proxy_router_main }}.rule=Host(`{{ proxy_domains | join('`,`') }}`) && PathPrefix(`{{ proxy_path }}`)
-        - traefik.http.middlewares.{{ proxy_router_main_strip }}.stripprefix.prefixes={{ proxy_path }}
-        - traefik.http.routers.{{ proxy_router_main }}.middlewares={{ proxy_router_main_strip }}@docker
+        - traefik.http.routers.{{ proxy_router_main }}.rule=Host(`{{ proxy_domains | join('`,`') }}`)
+
     networks:
       - {{ docker_network }}
 
