@@ -18,8 +18,5 @@ directories_ssl_certificates_host: '{{ directories_ssl_certificates }}'
 
 
 # routers/middleware
-proxy_domains: 
-  - organizr.diesel.net
-  - home.diesel.net
 repo_branch: '{{ git_repository }}-{{ git_branch }}'
 proxy_router_main: '{{ repo_branch }}-main'
