@@ -1,7 +1,7 @@
 [![Build Status](https://drone-ci.hopto.org/api/badges/Diesel-Net/organizr/status.svg)](https://drone-ci.hopto.org/Diesel-Net/organizr)
 
 # organizr
-Sets up [Organizr](https://github.com/causefx/Organizr) on my internal network. Currently, this is a pretty decent way to provide a quick access and overview to all of the services we are self-hosting. It comes with it's own RBAC so we can delegate to collaborators for convenience.
+Sets up [Organizr](https://github.com/causefx/Organizr) on the internal network. Currently, this is a pretty decent way to provide a quick access and overview to all of the services we are self-hosting. It comes with it's own RBAC so we can delegate to collaborators for convenience.
 
 ## Requirements
 - Ansible 2.10+
