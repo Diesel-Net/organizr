@@ -1,9 +1,5 @@
 codename: organizr
 
-debug: no
-local: no
-production: no
-
 # directories
 directories_ansible: '{{ playbook_dir }}'
 directories_build: ~/drone_builds
@@ -18,8 +14,6 @@ directories_ssl_certificates_host: '{{ directories_ssl_certificates }}'
 
 
 # routers/middleware
-proxy_domains: 
-  - organizr.diesel.net
-  - home.diesel.net
 repo_branch: '{{ git_repository }}-{{ git_branch }}'
 proxy_router_main: '{{ repo_branch }}-main'
+proxy_router_main_strip: '{{ repo_branch }}-main-strip' 
