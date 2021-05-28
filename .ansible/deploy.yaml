@@ -2,13 +2,15 @@
 
 - hosts: tools
   strategy: linear
+  roles:
+    - common
 
   tasks:
 
-    - name: 'Ensure existence of configuration directory: {{ directories_files }}/config'
-      command: mkdir -p {{ directories_files }}/config
-      args:
-        warn: no
+    - include_role:
+        name: common
+        tasks_from: make_data_dir
 
-    - import_role:
-        name: docker_deploy
+    - include_role:
+        name: docker
+        tasks_from: stack_deploy
