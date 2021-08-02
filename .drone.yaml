@@ -7,22 +7,43 @@ clone:
   depth: 1
 
 steps:
-  - name: deploy
+  - name: deploy (dev)
     image: plugins/ansible:3
     environment:
       ANSIBLE_CONFIG: .ansible/ansible.cfg
     settings:
+      inventory: .ansible/inventory/development/hosts
       playbook: .ansible/deploy.yaml
       galaxy: .ansible/roles/requirements.yaml
       private_key:
         from_secret: automation_id_rsa
       vault_password:
         from_secret: ansible_vault_password
-    commands:
-      # dynamically select inventory based on Git branch/tag
-      - version=$DRONE_BRANCH
-      - if [ ! -z $DRONE_TAG ]; then version=production; fi
-      - /bin/drone-ansible --inventory .ansible/inventory/$$version/hosts
+    when:
+      branch:
+        - development
+      event:
+        - push
+
+
+  - name: deploy (prod)
+    image: plugins/ansible:3
+    environment:
+      ANSIBLE_CONFIG: .ansible/ansible.cfg
+    settings:
+      inventory: .ansible/inventory/development/hosts
+      playbook: .ansible/deploy.yaml
+      galaxy: .ansible/roles/requirements.yaml
+      private_key:
+        from_secret: automation_id_rsa
+      vault_password:
+        from_secret: ansible_vault_password
+      extra_vars: version=production
+    when:
+      branch:
+        - stable
+      event:
+        - push
 
 trigger:
   branch:
