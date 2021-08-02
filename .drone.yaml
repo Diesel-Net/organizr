@@ -12,6 +12,7 @@ steps:
     environment:
       ANSIBLE_CONFIG: .ansible/ansible.cfg
     settings:
+      inventory: .ansible/inventory/development/hosts
       playbook: .ansible/deploy.yaml
       galaxy: .ansible/roles/requirements.yaml
       private_key:
@@ -30,6 +31,7 @@ steps:
     environment:
       ANSIBLE_CONFIG: .ansible/ansible.cfg
     settings:
+      inventory: .ansible/inventory/development/hosts
       playbook: .ansible/deploy.yaml
       galaxy: .ansible/roles/requirements.yaml
       private_key:
